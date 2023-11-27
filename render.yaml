@@ -1,0 +1,18 @@
+databases:
+  - name: smsapp
+    databaseName: smsapp
+    user: smsapp
+
+services:
+  - type: web
+    name: smsapp
+    runtime: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: smsapp
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false

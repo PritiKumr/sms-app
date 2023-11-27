@@ -45,7 +45,7 @@ class OutboundSmsController < ApplicationController
     expiry = 24 * 60 * 60
 
     if current_count >= limit
-      raise StandardError.new("limit reached for from #{from}")
+      raise StandardError.new(" #{from}")
     end
 
     REDIS.multi do
